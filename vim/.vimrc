@@ -16,7 +16,7 @@ set scrolloff=8
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set expandtab
+set noexpandtab
 set smartindent
 set nowrap
 
@@ -31,12 +31,13 @@ set incsearch
 " Basics: keymaps
 tnoremap <Esc> <C-\><C-n>
 nnoremap <silent> <C-w> :bd<CR>
-vnoremap <C-C> :w !xclip -i -sel c<CR><CR>
-vnoremap <C-V> :r !xclip -o -sel c<CR><CR>
 
 " Basics: comments
 set formatoptions-=r
 set formatoptions-=o
+
+" Basics: clipboard
+set clipboard=unnamedplus
 
 " Plugins:
 
@@ -55,7 +56,7 @@ Plug 'yami-beta/asyncomplete-omni.vim'
 Plug 'junegunn/fzf'
 Plug 'https://github.com/junegunn/fzf.vim'
 
-Plug 'https://github.com/voldikss/vim-floaterm'
+" Plug 'https://github.com/voldikss/vim-floaterm'
 
 call plug#end()
 
@@ -120,14 +121,14 @@ nnoremap <silent> <C-e> :Files<CR>
 nnoremap <silent> <C-f> :Buffers<CR>
 
 " Plugins: vim-floaterm
-let g:floaterm_width=0.8
-let g:floaterm_height=0.8
+" let g:floaterm_width=1.0
+" let g:floaterm_height=1.0
 
-nnoremap <silent> <C-t> :FloatermToggle<CR>
-tnoremap <silent> <C-t> <C-\><C-n>:FloatermToggle<CR>
+" nnoremap <silent> <C-t> :FloatermToggle<CR>
+" tnoremap <silent> <C-t> <C-\><C-n>:FloatermToggle<CR>
 
-nnoremap <silent> <C-t-n> :FloatermNew<CR>
-tnoremap <silent> <C-t-k> <C-\><C-n>:FloatermKill<CR>
+" nnoremap <silent> <C-t-n> :FloatermNew<CR>
+" tnoremap <silent> <C-t-k> <C-\><C-n>:FloatermKill<CR>
 
-nnoremap <silent> <C-t-n> :FloatermNew<CR>
-tnoremap <silent> <C-t-k> <C-\><C-n>:FloatermKill<CR>
+" nnoremap <silent> <C-t-n> :FloatermNew<CR>
+" tnoremap <silent> <C-t-k> <C-\><C-n>:FloatermKill<CR>
