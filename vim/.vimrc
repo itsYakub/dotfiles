@@ -45,6 +45,7 @@ set clipboard=unnamedplus
 call plug#begin()
 
 Plug 'https://github.com/sainnhe/everforest'
+Plug 'https://github.com/catppuccin/vim'
 
 Plug 'https://github.com/vim-airline/vim-airline'
 
@@ -56,18 +57,9 @@ Plug 'yami-beta/asyncomplete-omni.vim'
 Plug 'junegunn/fzf'
 Plug 'https://github.com/junegunn/fzf.vim'
 
-" Plug 'https://github.com/voldikss/vim-floaterm'
-
 call plug#end()
 
 " Plugins: everforest
-" Important!!
-if has('termguicolors')
-    set termguicolors
-endif
-
-" For dark version.
-set background=dark
 
 " Set contrast.
 " This configuration option should be placed before `colorscheme everforest`.
@@ -77,7 +69,17 @@ let g:everforest_background = 'medium'
 " For better performance
 let g:everforest_better_performance = 1
 
-colorscheme everforest
+" Set colorscheme
+" Important!!
+if has('termguicolors')
+    set termguicolors
+endif
+
+" colorscheme everforest
+colorscheme catppuccin_mocha
+
+" For dark version.
+set background=dark
 
 " Plugins: vim-airline
 let g:airline#extensions#tabline#enabled = 1
@@ -119,16 +121,3 @@ autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#s
 " Plugins: fzf.vim
 nnoremap <silent> <C-e> :Files<CR>
 nnoremap <silent> <C-f> :Buffers<CR>
-
-" Plugins: vim-floaterm
-" let g:floaterm_width=1.0
-" let g:floaterm_height=1.0
-
-" nnoremap <silent> <C-t> :FloatermToggle<CR>
-" tnoremap <silent> <C-t> <C-\><C-n>:FloatermToggle<CR>
-
-" nnoremap <silent> <C-t-n> :FloatermNew<CR>
-" tnoremap <silent> <C-t-k> <C-\><C-n>:FloatermKill<CR>
-
-" nnoremap <silent> <C-t-n> :FloatermNew<CR>
-" tnoremap <silent> <C-t-k> <C-\><C-n>:FloatermKill<CR>
