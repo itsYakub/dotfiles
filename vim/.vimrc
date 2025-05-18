@@ -29,8 +29,13 @@ set nohlsearch
 set incsearch
 
 " Basics: keymaps
-tnoremap <Esc> <C-\><C-n>
+tnoremap <Esc><Esc> <C-\><C-n>
 nnoremap <silent> <C-w> :bd<CR>
+
+" NOTE:	for this mapping, we need to have two <Esc> tags. Otherwise, on some
+"		machines, there would be an error E21
+" tnoremap <Esc> <C-\><C-n>			<-- wrong
+" tnoremap <Esc><Esc> <C-\><C-n>	<-- correct
 
 " Basics: comments
 set formatoptions-=r
