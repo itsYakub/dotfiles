@@ -44,28 +44,31 @@ set formatoptions-=o
 " Basics: clipboard
 set clipboard=unnamedplus
 
+" Basics: other
+set shell=/bin/bash
+
 " Plugins:
 
 " Plugins: Setup
 call plug#begin()
 
-Plug 'https://github.com/sainnhe/everforest'
-Plug 'https://github.com/catppuccin/vim'
+Plug 'sainnhe/everforest'
+Plug 'catppuccin/vim'
 
-Plug 'https://github.com/vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'yami-beta/asyncomplete-omni.vim'
 
-Plug 'junegunn/fzf'
-Plug 'https://github.com/junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
-" Plugins: everforest
-
+" Plugins: Everforest
+"
 " Set contrast.
 " This configuration option should be placed before `colorscheme everforest`.
 " Available values: 'hard', 'medium'(default), 'soft'
@@ -74,6 +77,8 @@ let g:everforest_background = 'medium'
 " For better performance
 let g:everforest_better_performance = 1
 
+" Section: Theme
+"
 " Set colorscheme
 " Important!!
 if has('termguicolors')
