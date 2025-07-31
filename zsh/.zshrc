@@ -5,6 +5,7 @@ PROMPT="%n@%m:%~$ "
 # SECTION: Aliases
 # # # # # # # # # #
 alias ls="ls --color=auto"
+alias clear="printf '\033[2J\033[3J\033[1;1H'" # This is the alias especially handy for kitty terminal (and it's scrollback)
 
 # SECTION: History
 # # # # # # # # # #
