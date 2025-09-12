@@ -5,6 +5,9 @@
 "  (_)   \_/   |_| |_| |_| |_| |_|     \___|
 "                                         
 "
+"
+"
+"
 " Basics:
 "
 " Basics: line numbers
@@ -12,21 +15,26 @@ set number
 set fillchars=eob:\ 
 set scrolloff=8
 
+
+
 " Basics: indentation
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set noexpandtab
 set smartindent
 set nowrap
+" For indentation using SPACES (' ')
+set expandtab
+" For indentation using TABS ('\t')
+" set noexpandtab
 
-" Basics: leader
-nnoremap <Space> <Nop>
-let mapleader=" "
+
 
 " Basics: search
 set nohlsearch
 set incsearch
+
+
 
 " Basics: keymaps
 tnoremap <Esc><Esc> <C-\><C-n>
@@ -37,15 +45,26 @@ nnoremap <silent> <C-w> :bd<CR>
 " tnoremap <Esc> <C-\><C-n>			<-- wrong
 " tnoremap <Esc><Esc> <C-\><C-n>	<-- correct
 
+
+
 " Basics: comments
 set formatoptions-=r
 set formatoptions-=o
 
+
+
 " Basics: clipboard
 set clipboard=unnamedplus
 
+
+
 " Basics: other
 set shell=/bin/bash
+
+
+
+
+
 
 " Plugins:
 
@@ -54,6 +73,7 @@ call plug#begin()
 
 Plug 'sainnhe/everforest'
 Plug 'catppuccin/vim'
+Plug 'morhetz/gruvbox'
 
 Plug 'vim-airline/vim-airline'
 
@@ -67,6 +87,8 @@ Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
+
+
 " Plugins: Everforest
 "
 " Set contrast.
@@ -79,20 +101,21 @@ let g:everforest_better_performance = 1
 
 " Section: Theme
 "
-" Set colorscheme
-" Important!!
+" colorscheme everforest
+" colorscheme gruvbox
+colorscheme catppuccin_mocha
+
 if has('termguicolors')
     set termguicolors
 endif
 
-" colorscheme everforest
-colorscheme catppuccin_mocha
 
-" For dark version.
-set background=dark
 
 " Plugins: vim-airline
 let g:airline#extensions#tabline#enabled = 1
+
+
+
 
 " Plugins: vim-lsp
 function! s:on_lsp_buffer_enabled() abort
@@ -127,6 +150,9 @@ autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#s
 \       'show_source_kind': 1,
 \   },
 \ } ))
+
+
+
 
 " Plugins: fzf.vim
 nnoremap <silent> <C-e> :Files<CR>
