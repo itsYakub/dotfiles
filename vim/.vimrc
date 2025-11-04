@@ -89,6 +89,11 @@ set shell=/bin/bash
 " Plugins: Setup
 " " " " " " " " "
 
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
 call plug#begin()
 
 Plug 'sainnhe/everforest'
@@ -140,7 +145,6 @@ let g:everforest_better_performance = 1
 " Plugins: vim-airline
 " " " " " " " " " " " "
 let g:airline#extensions#tabline#enabled = 1
-
 
 
 
