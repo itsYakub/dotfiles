@@ -7,7 +7,15 @@
 #                           |___/ 
 # # # # # # # # # # # # # # # # # #
 
-set $mod Mod4
+# Default: mod-key
+set $mod    Mod4
+
+# Default: utilities
+set $term   kitty
+set $menu   wofi --show drun
+set $lock   swaylock
+set $prtscr grim -g "$(slurp -d)" -
+
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
