@@ -19,8 +19,6 @@ endif
 
 call plug#begin()
 
-Plug 'catppuccin/vim'
-
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
@@ -76,23 +74,6 @@ autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#s
 let g:asyncomplete_auto_popup = 1
 
 
-colorscheme catppuccin_mocha
-if has ('termguicolors')
-    set termguicolors
-endif
-
-if has ('syntax')
-    syntax clear
-endif
-
-
-set laststatus=2
-set noshowmode
-set statusline=\[%{mode(0)}\]\ %f\ %m
-set statusline+=%=
-set statusline+=%y\ %l:%v/%L\ (%p%%)
-
-
 " NOTE:	for this mapping, we need to have two <Esc> tags.
 "       Otherwise, on some machines, there would be an error E21
 " tnoremap <Esc> <C-\><C-n>			<-- wrong
@@ -106,6 +87,7 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
+
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
@@ -113,3 +95,50 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> gd <plug>(lsp-definition)
     nmap <buffer> gt <plug>(lsp-type-definition)
 endfunction
+
+
+set noshowmode
+set laststatus=2
+set statusline=\[%{mode(0)}\]\ %f\ %m
+set statusline+=%=
+set statusline+=%y\ %l:%v/%L\ (%p%%)
+
+
+set syntax=clean
+if has ("termguicolors")
+
+    set termguicolors
+
+    hi Normal term=NONE gui=NONE guifg=white ctermfg=15
+
+    hi Keyword term=NONE gui=NONE guifg=white ctermfg=15
+
+    hi Statement term=NONE gui=NONE guifg=white ctermfg=15
+
+    hi Type term=NONE gui=NONE guifg=white ctermfg=15
+
+    hi Identifier term=NONE gui=NONE guifg=white ctermfg=15
+
+    hi Function term=NONE gui=NONE guifg=white ctermfg=15
+
+    hi PreProc term=NONE gui=NONE guifg=white ctermfg=15
+
+    hi Special term=NONE gui=NONE guifg=white ctermfg=15
+
+    hi Operator term=NONE gui=NONE guifg=white ctermfg=15
+
+    hi Pmenu term=NONE gui=NONE guifg=black ctermfg=0 guibg=white ctermbg=15
+
+    hi PmenuSel term=NONE gui=NONE guifg=black ctermfg=0 guibg=gray ctermbg=7
+
+    hi LineNr term=NONE gui=NONE guifg=darkgrey ctermfg=8
+
+    hi CursorLineNr term=bold gui=bold guifg=darkgrey ctermfg=8
+
+    hi Comment term=NONE gui=NONE guifg=darkgrey ctermfg=8
+
+    hi String term=NONE gui=NONE guifg=darkgrey ctermfg=8
+
+    hi Constant term=NONE gui=NONE guifg=darkgrey ctermfg=8
+
+endif
