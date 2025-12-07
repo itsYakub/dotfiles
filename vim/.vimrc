@@ -19,6 +19,8 @@ endif
 
 call plug#begin()
 
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
@@ -106,54 +108,6 @@ set statusline+=%y\ %l:%v/%L\ (%p%%)
 
 set syntax=clean
 if has ("termguicolors")
-
     set termguicolors
-
-    hi Normal guifg=white
-    hi Comment guifg=darkgray guibg=NONE
-    hi Constant guifg=darkgray guibg=NONE
-    hi Number guifg=darkgray guibg=NONE
-    hi Float guifg=darkgray guibg=NONE
-    hi String guifg=darkgray guibg=NONE
-    hi Character guifg=darkgray guibg=NONE
-    hi Boolean guifg=darkgray guibg=NONE
-
-    hi Identifier guifg=white
-    hi Function guifg=white
-    
-    hi Type guifg=white
-    hi Typedef guifg=white
-    hi StorageClass guifg=white
-    hi Structure guifg=white
-
-    hi PreProc guifg=white guibg=NONE
-    hi PreCondit guifg=white guibg=NONE
-    hi Macro guifg=white guibg=NONE
-    hi Define guifg=white guibg=NONE
-    hi Include guifg=white guibg=NONE
-
-    hi StatusLine gui=bold guifg=white guibg=black
-
-    hi Pmenu gui=NONE guifg=black guibg=white
-    hi PmenuSel gui=BOLD guifg=black guibg=gray
-    hi PmenuSbar gui=NONE guifg=black guibg=darkgray
-    hi PmenuThumb gui=NONE guifg=black guibg=gray
-    
-    hi Error guifg=red guibg=NONE
-    hi Repeat guifg=white guibg=NONE
-    hi SignColumn guifg=white guibg=NONE
-
-    hi Keyword guifg=white
-    hi Directory guifg=white
-    hi Statement guifg=white
-    hi Operator guifg=white
-    hi Special guifg=white
-    
-    hi LineNr gui=NONE guifg=darkgray
-    hi CursorLineNr gui=bold guifg=darkgray
-    
-    hi DiffText guifg=white guibg=NONE
-    hi ErrorMsg guifg=red guibg=NONE
-    hi WarningMsg guifg=yellow guibg=NONE
-
+    colorscheme catppuccin_mocha
 endif
