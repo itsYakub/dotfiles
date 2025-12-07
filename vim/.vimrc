@@ -39,7 +39,7 @@ set shell=/bin/bash
 
 set number
 set fillchars=eob:\ 
-set scrolloff=8
+set scrolloff=4
 
 
 set tabstop=4
@@ -90,7 +90,7 @@ inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
-    setlocal signcolumn=yes
+    setlocal signcolumn=auto
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
     nmap <buffer> gd <plug>(lsp-definition)
     nmap <buffer> gt <plug>(lsp-type-definition)
@@ -109,36 +109,51 @@ if has ("termguicolors")
 
     set termguicolors
 
-    hi Normal term=NONE gui=NONE guifg=white ctermfg=15
+    hi Normal guifg=white
+    hi Comment guifg=darkgray guibg=NONE
+    hi Constant guifg=darkgray guibg=NONE
+    hi Number guifg=darkgray guibg=NONE
+    hi Float guifg=darkgray guibg=NONE
+    hi String guifg=darkgray guibg=NONE
+    hi Character guifg=darkgray guibg=NONE
+    hi Boolean guifg=darkgray guibg=NONE
 
-    hi Keyword term=NONE gui=NONE guifg=white ctermfg=15
+    hi Identifier guifg=white
+    hi Function guifg=white
+    
+    hi Type guifg=white
+    hi Typedef guifg=white
+    hi StorageClass guifg=white
+    hi Structure guifg=white
 
-    hi Statement term=NONE gui=NONE guifg=white ctermfg=15
+    hi PreProc guifg=white guibg=NONE
+    hi PreCondit guifg=white guibg=NONE
+    hi Macro guifg=white guibg=NONE
+    hi Define guifg=white guibg=NONE
+    hi Include guifg=white guibg=NONE
 
-    hi Type term=NONE gui=NONE guifg=white ctermfg=15
+    hi StatusLine gui=bold guifg=white guibg=black
 
-    hi Identifier term=NONE gui=NONE guifg=white ctermfg=15
+    hi Pmenu gui=NONE guifg=black guibg=white
+    hi PmenuSel gui=BOLD guifg=black guibg=gray
+    hi PmenuSbar gui=NONE guifg=black guibg=darkgray
+    hi PmenuThumb gui=NONE guifg=black guibg=gray
+    
+    hi Error guifg=red guibg=NONE
+    hi Repeat guifg=white guibg=NONE
+    hi SignColumn guifg=white guibg=NONE
 
-    hi Function term=NONE gui=NONE guifg=white ctermfg=15
-
-    hi PreProc term=NONE gui=NONE guifg=white ctermfg=15
-
-    hi Special term=NONE gui=NONE guifg=white ctermfg=15
-
-    hi Operator term=NONE gui=NONE guifg=white ctermfg=15
-
-    hi Pmenu term=NONE gui=NONE guifg=black ctermfg=0 guibg=white ctermbg=15
-
-    hi PmenuSel term=NONE gui=NONE guifg=black ctermfg=0 guibg=gray ctermbg=7
-
-    hi LineNr term=NONE gui=NONE guifg=darkgrey ctermfg=8
-
-    hi CursorLineNr term=bold gui=bold guifg=darkgrey ctermfg=8
-
-    hi Comment term=NONE gui=NONE guifg=darkgrey ctermfg=8
-
-    hi String term=NONE gui=NONE guifg=darkgrey ctermfg=8
-
-    hi Constant term=NONE gui=NONE guifg=darkgrey ctermfg=8
+    hi Keyword guifg=white
+    hi Directory guifg=white
+    hi Statement guifg=white
+    hi Operator guifg=white
+    hi Special guifg=white
+    
+    hi LineNr gui=NONE guifg=darkgray
+    hi CursorLineNr gui=bold guifg=darkgray
+    
+    hi DiffText guifg=white guibg=NONE
+    hi ErrorMsg guifg=red guibg=NONE
+    hi WarningMsg guifg=yellow guibg=NONE
 
 endif
