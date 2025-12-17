@@ -21,11 +21,6 @@ call plug#begin()
 
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'yami-beta/asyncomplete-omni.vim'
-
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -58,24 +53,6 @@ set incsearch
 
 set clipboard=unnamedplus
 
-augroup lsp_install
-    au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
-
-autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options( {
-\   'name': 'omni',
-\   'allowlist': [ '*' ],
-\   'completor': function('asyncomplete#sources#omni#completor'),
-\   'config': {
-\       'show_source_kind': 1,
-\   },
-\ } ))
-
-let g:asyncomplete_auto_popup = 1
-
-
 " NOTE:	for this mapping, we need to have two <Esc> tags.
 "       Otherwise, on some machines, there would be an error E21
 " tnoremap <Esc> <C-\><C-n>			<-- wrong
@@ -88,15 +65,6 @@ nnoremap <silent> <C-f> :Buffers<CR>
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
-
-
-function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    setlocal signcolumn=auto
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> gt <plug>(lsp-type-definition)
-endfunction
 
 
 set noshowmode
