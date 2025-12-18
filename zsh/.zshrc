@@ -8,9 +8,13 @@ function lprompt() {
 }
 
 function rprompt() {
-    branch="$(git symbolic-ref --short HEAD 2>/dev/null)" || return
+    gb="$(git symbolic-ref --short HEAD 2>/dev/null)" || return
 
-    echo "[ $branch ]"
+    if git diff --exit-code --quiet; then
+        echo "[ $gb ]";
+    else
+        echo "[ $gb [+] ]";
+    fi
 }
 
 PROMPT='$(lprompt)'
