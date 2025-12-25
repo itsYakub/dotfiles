@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+for x in $HOME/.config/zsh/*.zsh; do
+    source "$x"
+done
