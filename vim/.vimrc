@@ -47,6 +47,9 @@ set nowrap
 set expandtab
 
 
+set mouse=a
+
+
 set nohlsearch
 set incsearch
 
