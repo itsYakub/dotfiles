@@ -56,15 +56,8 @@ set incsearch
 
 set clipboard=unnamedplus
 
-" NOTE:	for this mapping, we need to have two <Esc> tags.
-"       Otherwise, on some machines, there would be an error E21
-" tnoremap <Esc> <C-\><C-n>			<-- wrong
-" tnoremap <Esc><Esc> <C-\><C-n>	<-- correct
 
-tnoremap <Esc><Esc> <C-\><C-n>
 nnoremap <silent> <C-w> :bd<CR>
-nnoremap <silent> <C-e> :Files<CR>
-nnoremap <silent> <C-f> :Buffers<CR>
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
@@ -82,3 +75,15 @@ if has ("termguicolors")
     set termguicolors
     colorscheme catppuccin_mocha
 endif
+
+
+let g:fzf_vim = { }
+let g:fzf_layout = { "window": { "width": 0.9, "height": 0.9 } }
+nnoremap <silent> <C-e> :Files<CR>
+nnoremap <silent> <C-f> :Buffers<CR>
+
+" NOTE:	for this mapping, we need to have two <Esc> tags.
+"       Otherwise, on some machines, there would be an error E21
+" tnoremap <Esc> <C-\><C-n>			<-- wrong
+" tnoremap <Esc><Esc> <C-\><C-n>	<-- correct
+tnoremap <Esc><Esc> <C-\><C-n>
