@@ -45,6 +45,9 @@ set expandtab
 
 set mouse=a
 
+set nohlsearch
+set incsearch
+
 nnoremap <silent> <C-w> :bd<CR>
 
 set noshowmode
