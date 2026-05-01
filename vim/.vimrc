@@ -48,8 +48,6 @@ set mouse=a
 set nohlsearch
 set incsearch
 
-nnoremap <silent> <C-w> :bd<CR>
-
 set noshowmode
 set laststatus=2
 set statusline=%!_statln()
@@ -70,7 +68,6 @@ let g:fzf_vim = { }
 let g:fzf_layout = { "window": { "width": 1.0, "height": 1.0, "border": "none" } }
 nnoremap <silent> <C-e> :Files<CR>
 nnoremap <silent> <C-f> :Buffers<CR>
-autocmd FileType fzf tnoremap <buffer> <C-w> <C-c>
 
 " NOTE:	for this mapping, we need to have two <Esc> tags.
 "       Otherwise, on some machines, there would be an error E21
