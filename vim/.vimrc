@@ -22,6 +22,8 @@ call plug#begin()
 
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
+Plug 'morhertz/gruvbox', { 'as': 'gruvbox' }
+
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 Plug 'junegunn/fzf.vim'
