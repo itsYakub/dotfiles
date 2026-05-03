@@ -8,7 +8,7 @@
 # # # # # # # # # # # # # # # # # #
 
 include ./config-autostart.conf
-include ./config-layout.conf
-include ./config-keyboard.conf
-include ./config-nagbar.conf
 include ./config-status.conf
+include ./config-layout.conf
+include ./config-nagbar.conf
+include ./config-keyboard.conf
