@@ -76,7 +76,7 @@ set expandtab
 set mouse=a
 
 " When there is a previous search pattern, highlight all its matches.
-set hlsearch
+set nohlsearch
 
 " While typing a search command, show where the pattern, as it was typed so far, matches.
 set incsearch
