@@ -4,3 +4,9 @@
 [submodule "kitty/.config/kitty/gruvbox"]
 	path = kitty/.config/kitty/gruvbox
 	url = https://github.com/wdomitrz/kitty_gruvbox_theme.git
+[submodule "tmux/.config/tmux/plugins/catppuccin"]
+	path = tmux/.config/tmux/plugins/catppuccin
+	url = https://github.com/catppuccin/tmux.git
+[submodule "tmux/.config/tmux/plugins/gruvbox"]
+	path = tmux/.config/tmux/plugins/gruvbox
+	url = https://github.com/egel/tmux-gruvbox.git
