@@ -6,11 +6,6 @@
 "  (_)   \_/   |_| |_| |_| |_| |_|     \___|
 "                                         
 " " " " " " " " " " " " " " " " " " " " " " "
-"
-"
-" " " " " "
-" Plugins:
-" " " " " "
 
 if !filereadable(expand('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -24,46 +19,81 @@ Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
 Plug 'morhertz/gruvbox', { 'as': 'gruvbox' }
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-
-Plug 'junegunn/fzf.vim'
-
 call plug#end()
 
-" " " " "
-" Config:
-" " " " "
-
+" :h shell
+" "
+"
 " Name of the shell to use for ! and :! commands.
+" "
 set shell=/bin/bash
 
+" :h number
+" "
+" 
 " Print the line number in front of each line. 
+" "
 set number
 
+" :h fillchars
+" "
+" 
 " 'eob' (end-of-buffer) lines display a whitespace ('\ ')
+" "
 set fillchars=eob:\ 
 
+" :h scrollof
+" "
+" 
 " Minimal number of screen lines to keep above and below the cursor.
+" "
 set scrolloff=4
 
+" :h tabstop
+" "
+"
 " Defines the column multiple used to display the Horizontal Tab character (ASCII 9);
+" "
 set tabstop=4
 
-" Create soft tab stops, separated by 'softtabstop' number of columns.
+" :h softtabstop 
+" "
+"
+" Create soft tab stops, separated by 'softtabstop' number of columns.:
+" "
 set softtabstop=4
 
+" :h shiftwidth
+" "
+"
 " Number of columns that make up one level of (auto)indentation.
+" "
 set shiftwidth=4
 
+" :h smartindent
+" "
+"
 " Do smart autoindenting when starting a new line.
+" "
 set smartindent
 
+" :h nowrap
+" "
+"
 " This option changes how text is displayed.
+" "
 set nowrap
 
+" :h expandtab
+" "
+"
 " In Insert mode: Use the appropriate number of spaces to insert a <Tab>.
+" "
 set expandtab
 
+" :h mouse
+" "
+"
 " Enable the use of the mouse.
 " Modes:
 " - n - Normal mode and Terminal modes
@@ -73,50 +103,79 @@ set expandtab
 " - h - all previous modes when editing a help file
 " - a - all previous modes
 " - r - for |hit-enter| and |more-prompt| prompt
+" "
 set mouse=a
 
+" :h nohlsearch
+" "
+"
 " When there is a previous search pattern, highlight all its matches.
+" "
 set nohlsearch
 
+" :h incsarch
+" "
+"
 " While typing a search command, show where the pattern, as it was typed so far, matches.
+" "
 set incsearch
 
+" :h noshowmode
+" "
+"
 " If in Insert, Replace or Visual mode put a message on the last line.
+" "
 set noshowmode
 
-" When this option is set, the syntax with this name is loaded, unless syntax highlighting has been switched off with ":syntax off".
-set syntax=clean
-if has ("termguicolors")
-    set termguicolors
-    colorscheme catppuccin_mocha
-endif
+" :h netwr
+" :h netwr-browser-settings
+" :h netwr-browser-options
+" :h netwr-browser-var
+" "
+"
+" Set the default listing style:
+" = 0: thin listing (one file per line)
+" = 1: long listing (one file per line with time
+"      stamp information and file size)
+" = 2: wide listing (multiple files in columns)
+" = 3: tree style listing
+" "
+let g:netrw_liststyle=3
 
-" All configuration values for this plugin are stored in `g:fzf_vim` dictionary,
-" so make sure to initialize it before assigning any configuration values to it.
-let g:fzf_vim = { }
+" enable/suppress the banner
+" =0: suppress the banner
+" =1: banner is enabled (default)
+" "
+let g:netrw_banner=0
 
-" Determines the size and position of fzf window
-let g:fzf_layout = { "window": { "width": 1.0, "height": 1.0, "border": "none" } }
+" Controlled by the "a" map (see |netrw-a|)
+" =0 : show all
+" =1 : show not-hidden files
+" =2 : show hidden files only
+"  default: =1
+" "
+let g:netrw_hide=1
 
-" On CTRL+e: Files (runs  `$FZF_DEFAULT_COMMAND`  if defined)
-nnoremap <silent> <C-e> :Files<CR>
+" comma-separated pattern list for hiding files
+" Patterns are regular expressions (see |regexp|)
+" "
+let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
 
-" On CTRL+f: Open buffers
-nnoremap <silent> <C-f> :Buffers<CR>
-
-" NOTE:	for this mapping, we need to have two <Esc> tags.
-"       Otherwise, on some machines, there would be an error E21
-" tnoremap <Esc> <C-\><C-n>			<-- wrong
-" tnoremap <Esc><Esc> <C-\><C-n>	<-- correct
-tnoremap <Esc><Esc> <C-\><C-n>
-
+" :h laststatus
+" "
+"
 " The value of this option influences when the last window will have a status line:
 " 0: never
 " 1: only if there are at least two windows
 " 2: always
+" "
 set laststatus=2
 
+" :h statusline 
+" "
+"
 " When non-empty, this option determines the content of the status line.
+" "
 set statusline=%!_statln()
 function! _statln()
     let line  = '[%{mode(0)}] %f %m '
@@ -125,11 +184,26 @@ function! _statln()
     return (line)
 endfunction
 
+" :h showtabline
+" "
+"
 " The value of this option specifies when the line with tab page labels will be displayed:
 " 0: never
 " 1: only if there are at least two tab pages
 " 2: always
+" "
 set showtabline=1
+
+" :h syntax 
+" "
+"
+" When this option is set, the syntax with this name is loaded, unless syntax highlighting has been switched off with ":syntax off".
+" "
+set syntax=clean
+if has ("termguicolors")
+    set termguicolors
+    colorscheme catppuccin_mocha
+endif
 
 command! -nargs=0 Skeleton call _skeleton()
 function! _skeleton()
