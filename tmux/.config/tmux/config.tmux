@@ -1,8 +1,11 @@
 # config.tmux
 # # # # # # #
 #
-# Set the default terminal for new windows created in this session - the default value of the TERM environment variable.
-set -g default-terminal "tmux"
+# default-terminal: Set the default terminal for new windows created in this session - the default value of the TERM environment variable.
+set -g default-terminal "tmux-256color"
+
+# terminal-overrides: Allow terminal descriptions read using terminfo(5) to be overridden.
+set -ag terminal-overrides ",*:Tc"
 
 # mode-keys: emacs-style binding in copy-mode
 setw -g mode-keys emacs
