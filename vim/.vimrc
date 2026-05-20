@@ -200,7 +200,9 @@ set showtabline=1
 " When this option is set, the syntax with this name is loaded, unless syntax highlighting has been switched off with ":syntax off".
 " "
 set syntax=clean
-if has ("termguicolors")
+if exists('+termguicolors')
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
     colorscheme catppuccin_mocha
 endif
