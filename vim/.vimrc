@@ -183,11 +183,13 @@ if isdirectory(g:fern_path)
     " :h Fern
     " :h fern
     " :h fern-mapping
+    " :h fern-mapping-global
     " :h fern-custom-smart
     " "
     function! FernInit() abort
 
-        " fern#smart#leaf: Return a mapping expression determined by a status of a current cursor node
+        " fern#smart#leaf:
+        "   Return a mapping expression determined by a status of a current cursor node
         nmap <buffer><expr> <Enter>
         \ fern#smart#leaf(
         \ "<Plug>(fern-action-open)",
@@ -195,16 +197,30 @@ if isdirectory(g:fern_path)
         \ "<Plug>(fern-action-collapse)"
         \ )
         
-        " fern-action-hidden:toggle: Toggle hidden nodes. For example hidden nodes in file:// scheme is a file or directory starts from '.' character.
+        " fern-action-hidden:toggle:
+        "   Toggle hidden nodes.
+        "   For example hidden nodes in file:// scheme is a file or directory starts from '.' character.
         nmap <buffer> gh
         \ <Plug>(fern-action-hidden:toggle)
 
+        " fern-action-reload:
+        "   An alias to "reload:all" action.
+        "   Users can overwrite this mapping to change the default behavior of "reload" action like:
+        nmap <buffer> r
+        \ <Plug>(fern-action-reload)
+
     endfunction
 
-    augroup FernGroup
+    augroup FernEvents
 
         autocmd!
         autocmd FileType fern call FernInit()
+
+        " replace netrw with fern
+        autocmd VimEnter * command! Explore  Fern . -reveal=%
+        autocmd VimEnter * command! Vexplore Fern . -reveal=% -opener=vsplit
+        autocmd VimEnter * command! Sexplore Fern . -reveal=% -opener=split
+        autocmd VimEnter * command! Lexplore Fern . -reveal=% -drawer -width=25
 
     augroup END
 
