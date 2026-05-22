@@ -36,6 +36,11 @@ Plug 'lambdalisue/vim-fern', { 'as': 'fern' }
 let g:fern_path=expand('~/.vim/plugged/fern')
 
 
+Plug 'lambdalisue/fern-git-status.vim', { 'as': 'fern-git-status' }
+
+let g:fern_git_status_path=expand('~/.vim/plugged/fern-git-status')
+
+
 call plug#end()
 
 " :h shell
@@ -207,6 +212,16 @@ if isdirectory(g:fern_path)
     " Default: 0
     " "
     let g:fern#default_hidden=1
+
+endif
+
+if isdirectory(g:fern_git_status_path)
+
+    let g:fern_git_status#disable_ignored=1
+
+    let g:fern_git_status#disable_untracked=1
+
+    let g:fern_git_status#disable_submodules=1
 
 endif
 
