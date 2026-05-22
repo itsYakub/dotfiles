@@ -209,6 +209,17 @@ if isdirectory(g:fern_path)
         nmap <buffer> r
         \ <Plug>(fern-action-reload)
 
+        " fern-action-open:split:
+        " fern-action-open:vsplit:
+        " fern-action-open:tabedit:
+        "   Open a cursor node or marked nodes with a corresponding command.
+        "   The command will be applied on an "anchor" window when invoked from a
+        "   drawer style fern (|fern-glossary-anchor|.)
+        nmap <buffer> s
+        \ <Plug>(fern-action-open:split)
+        nmap <buffer> v
+        \ <Plug>(fern-action-open:vsplit)
+
     endfunction
 
     augroup FernEvents
