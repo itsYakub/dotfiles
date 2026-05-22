@@ -7,17 +7,34 @@
 "                                         
 " " " " " " " " " " " " " " " " " " " " " " "
 
-if !filereadable(expand('~/.vim/autoload/plug.vim'))
+let g:plug_path=expand('~/.vim/autoload/plug.vim')
+
+if !filereadable(g:plug_path)
+
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+
 endif
 
 call plug#begin()
 
+
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
+let g:catppuccin_path=expand('~/.vim/plugged/catppuccin')
+
+
 Plug 'morhertz/gruvbox', { 'as': 'gruvbox' }
+
+let g:gruvbox_path=expand('~/.vim/plugged/gruvbox')
+
+
+Plug 'lambdalisue/vim-fern', { 'as': 'fern' }
+
+let g:fern_path=expand('~/.vim/plugged/fern')
+
 
 call plug#end()
 
@@ -156,10 +173,42 @@ let g:netrw_banner=0
 " "
 let g:netrw_hide=1
 
-" comma-separated pattern list for hiding files
-" Patterns are regular expressions (see |regexp|)
-" "
-let g:netrw_list_hide='\(^\|\s\s\)\zs\.\S\+'
+if isdirectory(g:fern_path)
+
+    " :h Fern
+    " :h fern
+    " :h fern-mapping
+    " :h fern-custom-smart
+    " "
+    function! FernInit() abort
+
+        " fern#smart#leaf: Return a mapping expression determined by a status of a current cursor node
+        nmap <buffer><expr> <Enter>
+        \ fern#smart#leaf(
+        \ "<Plug>(fern-action-open)",
+        \ "<Plug>(fern-action-expand)",
+        \ "<Plug>(fern-action-collapse)"
+        \ )
+        
+        " fern-action-hidden:toggle: Toggle hidden nodes. For example hidden nodes in file:// scheme is a file or directory starts from '.' character.
+        nmap <buffer> gh
+        \ <Plug>(fern-action-hidden:toggle)
+
+    endfunction
+
+    augroup FernGroup
+
+        autocmd!
+        autocmd FileType fern call FernInit()
+
+    augroup END
+
+    " Set 1 to enter hidden mode (show hidden files) in default.
+    " Default: 0
+    " "
+    let g:fern#default_hidden=1
+
+endif
 
 " :h laststatus
 " "
@@ -178,10 +227,12 @@ set laststatus=2
 " "
 set statusline=%!_statln()
 function! _statln()
+
     let line  = '[%{mode(0)}] %f %m '
     let line .= '%='
     let line .= '%y %l:%v/%L (%p%%)'
     return (line)
+
 endfunction
 
 " :h showtabline
@@ -201,31 +252,42 @@ set showtabline=1
 " "
 set syntax=clean
 if exists('+termguicolors')
+
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
-    colorscheme catppuccin_mocha
+
+    if isdirectory(g:catppuccin_path) | colorscheme catppuccin_mocha | endif
+
 endif
 
 command! -nargs=0 Skeleton call _skeleton()
 function! _skeleton()
+
     " get file extension
     let l:ext = expand('%:e')
     if empty(l:ext) " usually case for a file with no ext.: Makefile, Dockerfile etc.
+
         let l:ext = &filetype
+
     endif
     if empty(l:ext) " unsupported file type...
+
         echoerr 'Invalid file type: ' . l:ext
         return
+
     endif
 
     " get the template file
     let l:template = expand('~/.vim/templates/skeleton.' . l:ext)
     if !filereadable(l:template)
+
         echoerr 'No template found: ' . l:template
         return
+
     endif
 
     " insert template
     execute '0r ' . fnameescape(l:template)
+
 endfunction
